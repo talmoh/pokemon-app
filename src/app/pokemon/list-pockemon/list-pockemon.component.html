@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+         <!-- <h1 style="text-align:center">Liste des Pokemons</h1> -->
+         <span style="display: block" style="color:rgb(0, 81, 255)">L'application des pokemons</span>
+         <!-- <img width="300" alt="Angular Logo"
+             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" /> -->
+         <input #input (keyup.enter)="selectPockemon(input.value)" type="number">
+         <!-- keyup.enter est l'un des pseudoenvenement d'angular et qui permettent de mettre en place des évenements plus précis -->
+         <!-- on va utilisé les directive conditionelles 
+             ngif(dans l'exemple pokemoneSelected fait le taff car soit il prend un pokemon soit il est undifined donc prend un false) et ngfor -->
+         <p *ngIf="pokemonSelected">
+             Vous avez choisi le pokemon: {{ pokemonSelected.name }}
+         </p>
+         <!-- ici l'opérateur "!" permet d'inversé la condition donc lorsqu'on a un numéro de pokemon qui n'existe pas on affiche le message suivant-->
+         <p *ngIf="!pokemonSelected">
+             Aucun pokemon n'a été trouver.
+         </p>
+         <!--ici on a gèrer l'interpolation directement grace a angular avec les acollades-->
+         <!-- la directive ngFor nous permet de créer une boucle pour afficher la liste des pokemones au lieu de de recopier le code a chaque fois -->
+         <div *ngFor="let pokemon of pockemonList" class="col m4 s6">
+             <div class="card horizontal" (click)="selectPockemon(pokemon.name)" pkmnBorderCard="#6495ed" (click)="goToPokemone(pokemon)">
+                 <div class="card-image">
+                     <img src="{{pokemon.picture}}" alt="" height="250px" width="250px" />
+                 </div>
+                 <div class="card-staked">
+                     <div class="card-content">
+                         <b>{{ pokemon.name }}</b><br>
+                         <p>{{pokemon.created | date:"d/MM/yyyy h:m"}}</p>
+                         <!-- la commande qui permet de générer un pipe avec angular cli sur cmd c'est: ng generate pipe pokemon-type-color -->
+                         <span *ngFor="let type of pokemon.types" class="{{ type | pokemonTypeColor }}">
+                             {{ type }}
+                         </span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>

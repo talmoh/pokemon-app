@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: "pokemonTypeColor",
+  name: "pokemonTypeColor"
 })
 export class PokemonTypeColorPipe implements PipeTransform {
   transform(type: string): string {
@@ -9,8 +9,8 @@ export class PokemonTypeColorPipe implements PipeTransform {
     let color: string;
     
     switch (type) {
-      case "Feu":
-        color = "red lighten-1";
+      case 'Feu':
+        color = 'red lighten-1';
         break;
       case "Eau":
         color = "blue lighten-1";
@@ -47,6 +47,6 @@ export class PokemonTypeColorPipe implements PipeTransform {
         break;
     }
     //chip est une classe qui permet d'afficher un petit rond de couleur puis on rajoute la variable (color)
-    return "chip" + color;
+    return 'chip' + color;
   }
 }
